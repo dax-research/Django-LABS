@@ -1,0 +1,50 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "admin/css/changelists.css" %}">
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+
+  {% block welcome %}
+    <div class="dashboard">
+      <h1>Welcome to the Django Polls Administration</h1>
+      <p>This is the administration panel for managing polls and questions.</p>
+    </div>
+  {% endblock %}
+
+  {% block app_list %}
+    <div class="module">
+      <table>
+        <caption><a class="changelink" href="">Polls</a></caption>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="{% url 'admin:polls_question_changelist' %}">Questions</a></td>
+            <td class="nowrap">
+              <a href="{% url 'admin:polls_question_add' %}" class="addlink">Add</a> /
+              <a href="{% url 'admin:polls_question_changelist' %}" class="changelink">Change</a>
+            </td>
+          </tr>
+          <tr>
+            <td><a href="{% url 'admin:polls_choice_changelist' %}">Choices</a></td>
+            <td class="nowrap">
+              <a href="{% url 'admin:polls_choice_add' %}" class="addlink">Add</a> /
+              <a href="{% url 'admin:polls_choice_changelist' %}" class="changelink">Change</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  {% endblock %}
+
+</div>
+{% endblock %}
